@@ -15,6 +15,135 @@
     <script type="text/javascript">
     /* Customisable map data */
 
+    var Page = {  
+    IsSetup: false,
+    
+    body: document.getElementsByTagName('body')[0],
+    cvs: document.createElement('canvas'),
+    ctx: 0,
+    
+    unitSize: 0,
+    AreaArr: [], 
+    
+    // calculates the unit size, canvas bounds, and canvas positioning
+    WindowChanged: function() {
+      
+      // Calulcate the unitSize based on window width and height.
+      // The minimum of these calculations will be used.
+      
+      var bodyW = document.documentElement.clientWidth,
+          bodyH = document.documentElement.clientHeight,
+          newUnitW = (bodyW - (bodyW % 80)) / 16,
+          newUnitH = (bodyH - (bodyH % 100)) / 20,
+          newUnitMin = Math.max(Math.min(newUnitW, newUnitH), 20);    
+      
+      // if the calcUnitMin != unitSize, update unitSize, recalculate
+      // all DrawAreaObjs, and update the canvas element bounds
+      
+      this.unitSize = newUnitMin;
+  
+      // store Right-most & Bottom-most points for canvas bounds
+      var rightLimit = 0,
+          bottomLimit = 0;
+  
+      for(var i = 0; i < Page.AreaArr.length; i++){
+        Page.AreaArr[i].CalculateBounds();
+  
+        var newRightLimit = Page.AreaArr[i].left + Page.AreaArr[i].W,
+            newBottomLimit = Page.AreaArr[i].top + Page.AreaArr[i].H;
+  
+        rightLimit = Math.max(newRightLimit, rightLimit);
+        bottomLimit = Math.max(newBottomLimit, bottomLimit);
+      }
+  
+      this.cvs.width = rightLimit;
+      this.cvs.height = bottomLimit;
+  
+      // left pos uses Game.W because ideally that area is centered
+      var topPos = (bodyH - bottomLimit) / 2,
+          leftPos = (bodyW / 2) - (this.Game.W / 2),
+          rightOffset = bodyW - (leftPos + rightLimit) - this.unitSize * 0.5;       
+  
+      // if default canvas positioning extends beyond screen, adjust it
+      if (rightOffset < 0){
+        leftPos = Math.max(this.unitSize * 0.5, leftPos + rightOffset);
+      }
+  
+      this.cvs.style.left = leftPos + 'px';
+      this.cvs.style.top =  topPos + 'px';    
+    },
+    
+    // performs the page setup
+    Initialize: function(){
+      
+      // if page has not been setup, do initial setup
+      if (this.IsSetup === false){
+        document.body.appendChild(Page.cvs);
+  
+        this.body.style.overflow = 'hidden';
+        this.body.style.backgroundColor = 'rgb(19,21,25)';
+        this.cvs.style.position = 'absolute';     
+        this.ctx = this.cvs.getContext('2d');
+      
+        this.IsSetup = true;
+      }
+      
+      this.WindowChanged();
+      
+      // dirty all draw areas
+      for(var i = 0; i < Page.AreaArr.length; i++){
+        Page.AreaArr[i].IsDirty = true;
+      }
+    },
+  
+    // redraws canvas visuals whenever the page is marked as dirty
+    Update: function() {
+      for(var i = 0; i < Page.AreaArr.length; i++){
+        if (Page.AreaArr[i].IsDirty){
+          Page.AreaArr[i].Draw();
+          Page.AreaArr[i].IsDirty = false;
+        }
+      }
+    }
+  };
+   
+  
+  // Definition for Area objects. Bounds are in UNITS
+  function DrawAreaObj(Left,Top,Width,Height,DrawFunction){
+  
+    // bounds in UNITS
+    this.leftBase = Left;
+    this.topBase = Top;
+    this.widthBase = Width;
+    this.heightBase = Height;
+    
+    // bounds in PIXELS
+    this.left = 0;
+    this.top = 0;
+    this.W = 0;
+    this.H = 0;
+    
+    // dirty flag (clean yourself up flag, you're better than that)
+    this.IsDirty = false;
+    
+    // bounds recalculated and area dirtied when unitSize changes
+    this.CalculateBounds = function(){
+      this.left = this.leftBase * Page.unitSize;
+      this.top = this.topBase * Page.unitSize;
+      this.W = this.widthBase * Page.unitSize;
+      this.H = this.heightBase * Page.unitSize;
+      
+      this.IsDirty = true;
+    };
+    
+    // draw function as passed in by the callee
+    this.Draw = DrawFunction;
+    
+    // push this area into the area arr    
+    Page.AreaArr.push(this);
+  }
+
+
 var map = {
 
 tile_size: 16,
