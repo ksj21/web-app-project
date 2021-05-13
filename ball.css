@@ -41,7 +41,8 @@
     margin:14px auto;
     text-align: justify;
     font-size: 18px;
-    color: #999;
+    color: rgba(255, 255, 255, 0.5);
+    padding-top: 5px;
   }
   
   a {
