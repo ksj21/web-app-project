@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    background-color: #000;
+    height: 100%;
+  }
+  
+  body {
+    background: #222;
+    background: radial-gradient(#333, #111);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    font: 100%/1.5 sans-serif;
+    overflow: hidden;
+  }
+  
+  canvas {
+    display:block;
+    margin: 40px auto 20px;
+    border: 1px solid #333;
+    box-shadow: 0 0 16px 2px rgba(0,0,0,0.8);
+  }
+  
+  p, a {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 19px;
+    color: #777;
+    display: block;
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration:none;
+  }
+  
+  .info {
+    margin:14px auto;
+    text-align: justify;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.5);
+    padding-top: 5px;
+  }
+  
+  a {
+    color:#3377ee;
+  }
