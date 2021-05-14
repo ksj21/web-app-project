@@ -1,0 +1,10 @@
+p, a {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 19px;
+    color: #777;
+    display: block;
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration:none;
+  }
