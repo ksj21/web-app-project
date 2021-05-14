@@ -169,15 +169,19 @@
 </form>
 
 <script type="text/javascript">
- // 1) CAPTURE INPUT VALUES
+
   var inputName = document.getElementById("inputName")
   var inputEmail = document.getElementById("inputEmail")
   var inputSubject = document.getElementById("inputSubject")
   var inputMessage = document.getElementById("inputMessage")
- 
+
+function submitForm (){
 
  console.log(inputName)
  console.log(inputEmail)
  console.log(inputSubject)
  console.log(inputMessage)
 
+ goButton.addEventListener("click", submitForm, false)
+
+}
