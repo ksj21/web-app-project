@@ -141,7 +141,7 @@
   </div>
   <br>
   <div class="form-group">
-      <label for="inputEmail1" class="col-lg-2 control-label">Email</label>
+      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
       <div class="col-lg-10">
           <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Your Email">
       </div>
@@ -155,7 +155,7 @@
   </div>
   <br>
   <div class="form-group">
-      <label for="inputPassword1" class="col-lg-2 control-label">Message</label>
+      <label for="inputMessage" class="col-lg-2 control-label">Message</label>
       <div class="col-lg-10">
           <textarea class="form-control" rows="4" id="inputMessage" name="inputMessage" placeholder="Your message..."></textarea>
       </div>
@@ -170,7 +170,14 @@
 
 <script type="text/javascript">
  // 1) CAPTURE INPUT VALUES
- var inputName = document.getElementById("inputName")
- var name = inputName.value
- console.log(name)
+  var inputName = document.getElementById("inputName")
+  var inputEmail = document.getElementById("inputEmail")
+  var inputSubject = document.getElementById("inputSubject")
+  var inputMessage = document.getElementById("inputMessage")
+ 
+
+ console.log(inputName)
+ console.log(inputEmail)
+ console.log(inputSubject)
+ console.log(inputMessage)
 
