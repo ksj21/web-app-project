@@ -174,7 +174,11 @@
   var inputEmail = document.getElementById("inputEmail")
   var inputSubject = document.getElementById("inputSubject")
   var inputMessage = document.getElementById("inputMessage")
-  var goButton = document.getElementById("button")
+
+console.log(document.getElementById("inputName").value);
+console.log(document.getElementById("inputEmail").value);
+console.log(document.getElementById("inputSubject").value);
+console.log(document.getElementById("inputMessage").value);
 
 function submitForm (){
 
@@ -182,7 +186,11 @@ function submitForm (){
  console.log(inputEmail)
  console.log(inputSubject)
  console.log(inputMessage)
+ console.log(goButton)
 
  goButton.addEventListener("click", submitForm, false)
 
 }
+
+
+
