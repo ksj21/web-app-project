@@ -132,16 +132,38 @@
   <p>-----------</p>
 </div>
 <h5>Sign up to hear about new games!</h5>
-<ol>
-  <form action="/action_page.php">
-      <label for="name">Name:</label>
-          <input type="text" id="name" name="name" value=""><br>
-      <label for="email">Email:</label>
-          <input type="email" id="email" name="email" value=""><br>
-      <label for="date">Date:</label>
-          <input type="date" id="date" name="date"><br><br>
-      <label for="message">Message:</label>
-          <input type="message" id="message" name="message" value="Enter your message here."><br><br>               
-      <input type="submit" value="Submit">
-  </form>
-</ol>
+<form name="contactform" method="post" action="http://example.com/wp-content/themes/fullby-child/mail/mailer.php" class="form-horizontal" role="form">
+  <div class="form-group">
+      <label for="inputName" class="col-lg-2 control-label">Name</label>
+      <div class="col-lg-10">
+          <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Your Name">
+      </div>
+  </div>
+  <br>
+  <div class="form-group">
+      <label for="inputEmail1" class="col-lg-2 control-label">Email</label>
+      <div class="col-lg-10">
+          <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Your Email">
+      </div>
+  </div>
+  <br>
+  <div class="form-group">
+      <label for="inputSubject" class="col-lg-2 control-label">Subject</label>
+      <div class="col-lg-10">
+          <input type="text" class="form-control" id="inputSubject" name="inputSubject" placeholder="Subject Message">
+      </div>
+  </div>
+  <br>
+  <div class="form-group">
+      <label for="inputPassword1" class="col-lg-2 control-label">Message</label>
+      <div class="col-lg-10">
+          <textarea class="form-control" rows="4" id="inputMessage" name="inputMessage" placeholder="Your message..."></textarea>
+      </div>
+  </div>
+  <br>
+  <div class="form-group">
+      <a class="btn btn-primary" href="#" role="button">Submit</a>
+      </div>
+  </div>
+  <br>
+</form>
